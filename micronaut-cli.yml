@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: farm.rack.wattbiller
+---
+testFramework: kotlintest
+sourceLanguage: kotlin
