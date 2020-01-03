@@ -25,7 +25,10 @@ dependencies {
     runtimeOnly 'io.micronaut.configuration:micronaut-jdbc-hikari'
     runtimeOnly 'com.h2database:h2'
     compile 'io.micronaut.configuration:micronaut-hibernate-jpa'
+    annotationProcessor 'io.micronaut.data:micronaut-data-processor:1.0.0.M5'
+    compile 'io.micronaut.data:micronaut-data-hibernate-jpa:1.0.0.M5'
     kapt "javax.persistence:javax.persistence-api:2.2"
+    annotationProcessor "io.micronaut:micronaut-security"
 
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
@@ -34,6 +37,7 @@ dependencies {
     implementation "javax.annotation:javax.annotation-api"
     implementation "io.micronaut:micronaut-http-server-netty"
     implementation "io.micronaut:micronaut-http-client"
+    implementation "io.micronaut:micronaut-security-jwt"
     kapt platform("io.micronaut:micronaut-bom:$micronautVersion")
     kapt "io.micronaut:micronaut-inject-java"
     kapt "io.micronaut:micronaut-validation"

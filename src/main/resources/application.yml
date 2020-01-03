@@ -1,6 +1,29 @@
 micronaut:
   application:
     name: wattbiller-backend
+  security:
+    enabled: true
+    oauth2:
+      enabled: true
+      clients:
+        google:
+          client-id: 'wattbiller'
+          client-secret: '3ef06c56-4ae9-4724-9347-87f4f1c8f84e'
+          openid:
+            issuer: 'https://login.rack.farm/'
+    token:
+      jwt:
+        enabled: true
+        cookie:
+          enabled: true
+        signatures:
+          secret:
+            generator:
+              secret: 586f86594888f7bc1b273e12c0ab478f
+    endpoints:
+      logout:
+        enabled: true
+        get-allowed: true
 datasources:
   default:
     url: jdbc:h2:mem:default;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
