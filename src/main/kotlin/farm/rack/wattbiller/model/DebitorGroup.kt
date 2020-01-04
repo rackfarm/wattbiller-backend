@@ -1,9 +1,6 @@
 package farm.rack.wattbiller.model
 
-import farm.rack.wattbiller.model.meter.Meter
-import io.micronaut.data.annotation.Id
 import javax.persistence.Entity
-import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 
 @Entity

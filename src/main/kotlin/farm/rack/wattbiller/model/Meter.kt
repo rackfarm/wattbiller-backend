@@ -1,8 +1,5 @@
-package farm.rack.wattbiller.model.meter
+package farm.rack.wattbiller.model
 
-import farm.rack.wattbiller.model.AbstractEntity
-import farm.rack.wattbiller.model.DebitorGroup
-import farm.rack.wattbiller.model.User
 import javax.persistence.Entity
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany

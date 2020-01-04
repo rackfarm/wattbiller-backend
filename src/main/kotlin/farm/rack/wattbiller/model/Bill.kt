@@ -1,7 +1,5 @@
 package farm.rack.wattbiller.model
 
-import farm.rack.wattbiller.model.meter.Meter
-import farm.rack.wattbiller.model.meter.MeterReading
 import javax.persistence.*
 
 /**
