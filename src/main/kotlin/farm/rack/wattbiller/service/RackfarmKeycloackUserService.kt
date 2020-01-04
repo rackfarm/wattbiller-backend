@@ -10,9 +10,13 @@ import javax.inject.Singleton
 @Singleton
 @Transactional
 class RackfarmKeycloackUserService (
-        var securityService: SecurityService,
-        var userRepository: UserRepository
+        val securityService: SecurityService,
+        val userRepository: UserRepository
 ) : UserService {
+
+    private val USERID_ATTRIBUTE = "sub"
+    private val USERNAME_ATTRIBUTE = "preferred_username"
+    private val EMAIL_ATTRIBUTE = "email"
 
     override fun getUser(): Optional<User> {
         if (!securityService.isAuthenticated) {
@@ -20,14 +24,16 @@ class RackfarmKeycloackUserService (
         }
 
         val auth = securityService.authentication.get()
-        val userId = auth.attributes["sub"] as String
+        val userId = auth.attributes[USERID_ATTRIBUTE] as String
+        val username = auth.attributes[USERNAME_ATTRIBUTE] as String
+        val email = auth.attributes[EMAIL_ATTRIBUTE] as String
 
         val existingUser = userRepository.findById(userId)
         if (existingUser.isPresent) {
             return existingUser
         }
 
-        val user = User(userId, auth.attributes["preferred_username"] as String)
+        val user = User(userId, username, email)
         return Optional.of(userRepository.save(user))
     }
 }
