@@ -9,7 +9,9 @@ import javax.inject.Singleton
 
 @Repository interface UserRepository: CrudRepository<User, String>
 @Repository interface MeterRepository: CrudRepository<Meter, Long>
-@Repository interface MeterReadingRepository: CrudRepository<MeterReading, Long>
+@Repository interface MeterReadingRepository: CrudRepository<MeterReading, Long> {
+    fun findByMeterId(meterId: Long): List<MeterReading>
+}
 @Repository interface BillRepository: CrudRepository<Bill, Long>
 @Repository interface BillingPeriodRepository: CrudRepository<BillingPeriod,Long>
 @Repository interface DebitorGroupRepository: CrudRepository<DebitorGroup, Long>
