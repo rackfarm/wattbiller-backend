@@ -1,7 +1,8 @@
-package farm.rack.wattbiller.service
+package farm.rack.wattbiller.service.impl
 
 import farm.rack.wattbiller.jpa.UserRepository
 import farm.rack.wattbiller.model.User
+import farm.rack.wattbiller.service.UserService
 import io.micronaut.security.utils.SecurityService
 import io.micronaut.spring.tx.annotation.Transactional
 import java.util.Optional
