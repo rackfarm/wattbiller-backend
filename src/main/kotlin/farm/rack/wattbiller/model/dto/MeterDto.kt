@@ -4,6 +4,6 @@ data class MeterDto(val id: Long = 0,
                     val name: String = "",
                     val debitorGroupId: Long = 0,
                     val meterReadings: List<MeterReadingDto> = arrayListOf(),
-                    val creditorUserid: String,
-                    val creditorUsername: String
+                    val creditorUserid: String = "",
+                    val creditorUsername: String = ""
 )
