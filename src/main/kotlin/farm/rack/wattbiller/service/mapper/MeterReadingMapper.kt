@@ -7,8 +7,8 @@ import org.mapstruct.Mapper
 @Mapper
 interface MeterReadingMapper {
 
-    fun meterReadingToMeterReadingDto(meterReading: MeterReading): MeterReadingDto
-    fun meterReadingDtoToMeterReading(meterReadingDto: MeterReadingDto): MeterReading
+    fun toDto(meterReading: MeterReading): MeterReadingDto
+    fun toEntity(meterReadingDto: MeterReadingDto): MeterReading
 //
 //    @Inject
 //    lateinit var meterRepository: MeterRepository

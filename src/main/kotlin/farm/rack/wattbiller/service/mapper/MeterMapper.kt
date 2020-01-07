@@ -17,8 +17,8 @@ import javax.validation.ValidationException
 @Mapper
 interface MeterMapper {
 
-    fun meterToMeterDto(meter: Meter): MeterDto
-    fun meterDtoToMeter(meterDto: MeterDto): Meter
+    fun toDto(meter: Meter): MeterDto
+    fun toEntity(meterDto: MeterDto): Meter
 
     //
 //    override fun fromDto(dto: MeterDto): Meter {

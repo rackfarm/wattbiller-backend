@@ -5,14 +5,13 @@ import farm.rack.wattbiller.model.Meter
 import farm.rack.wattbiller.model.MeterReading
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.repository.CrudRepository
-import javax.inject.Singleton
 
 @Repository interface UserRepository: CrudRepository<User, String>
 @Repository interface MeterRepository: CrudRepository<Meter, Long>
 @Repository interface MeterReadingRepository: CrudRepository<MeterReading, Long> {
     fun findByMeterId(meterId: Long): List<MeterReading>
 }
-@Repository interface BillRepository: CrudRepository<Bill, Long>
+@Repository interface BillRepository: CrudRepository<PeriodicStatement, Long>
 @Repository interface BillingPeriodRepository: CrudRepository<BillingPeriod,Long>
 @Repository interface DebitorGroupRepository: CrudRepository<DebitorGroup, Long>
 @Repository interface DebitorGroupMembershipRepository: CrudRepository<DebitorGroupMembership, Long>

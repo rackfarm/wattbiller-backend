@@ -7,5 +7,5 @@ import javax.persistence.OneToMany
 @Entity
 data class UserBill(@ManyToOne val user: User = User(),
                     @ManyToOne val billingPeriod: BillingPeriod = BillingPeriod(),
-                    @OneToMany val bills: List<Bill> = arrayListOf()) :AbstractEntity() {
+                    @OneToMany val periodicStatements: List<PeriodicStatement> = arrayListOf()) :AbstractEntity() {
 }

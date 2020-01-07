@@ -7,7 +7,6 @@ import org.mapstruct.Mapper
 
 @Mapper
 interface UserBillMapper {
-    fun userBillToUserBillDto(userBill: UserBill): UserBillDto
-    fun userBillDtoToUserBill(userBillDto: UserBillDto): UserBill
-
+    fun toDto(userBill: UserBill): UserBillDto
+    fun toEntity(userBillDto: UserBillDto): UserBill
 }

@@ -1,22 +1,22 @@
 package farm.rack.wattbiller.service.impl
 
-import farm.rack.wattbiller.model.dto.BillDto
-import farm.rack.wattbiller.service.BillService
+import farm.rack.wattbiller.model.dto.PeriodicStatementDto
+import farm.rack.wattbiller.service.PeriodicStatementService
 
-class DefaultBillService : BillService {
-    override fun create(dto: BillDto): BillDto {
+class DefaultPeriodicStatementService : PeriodicStatementService {
+    override fun create(dto: PeriodicStatementDto): PeriodicStatementDto {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun readById(id: Long): BillDto {
+    override fun readById(id: Long): PeriodicStatementDto {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun readAll(): List<BillDto> {
+    override fun readAll(): List<PeriodicStatementDto> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun update(dto: BillDto): BillDto {
+    override fun update(dto: PeriodicStatementDto): PeriodicStatementDto {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

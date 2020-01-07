@@ -6,6 +6,6 @@ import org.mapstruct.Mapper
 
 @Mapper
 interface DebitorGroupMapper {
-    fun debitorGroupToDebitorGroupDto(debitorGroup: DebitorGroup): DebitorGroupDto
-    fun debitorGroupDtoToDebitorGroup(debitorGroupDto: DebitorGroupDto): DebitorGroup
+    fun toDto(debitorGroup: DebitorGroup): DebitorGroupDto
+    fun toEntity(debitorGroupDto: DebitorGroupDto): DebitorGroup
 }
