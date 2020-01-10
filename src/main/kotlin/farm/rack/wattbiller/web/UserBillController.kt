@@ -1,11 +1,12 @@
+package farm.rack.wattbiller.web
+
 import farm.rack.wattbiller.model.dto.UserBillDto
 import farm.rack.wattbiller.service.UserBillService
 import io.micronaut.http.annotation.*
-import javax.inject.Inject
 
 @Controller("/api/userBill")
 class UserBillController {
-    @Inject
+//    @Inject
     lateinit var userBillService: UserBillService
 
     @Post

@@ -14,7 +14,7 @@ import javax.inject.Singleton
 import javax.validation.ValidationException
 
 
-@Mapper
+@Mapper(uses = [MeterReadingMapper::class])
 interface MeterMapper {
 
     fun toDto(meter: Meter): MeterDto
