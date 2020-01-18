@@ -29,7 +29,9 @@ interface DebitorGroupRepository : CrudRepository<DebitorGroup, Long>
 interface DebitorGroupMembershipRepository : CrudRepository<DebitorGroupMembership, Long>
 
 @Repository
-interface UserBillRepository : CrudRepository<UserBill, Long>
+interface UserBillRepository : CrudRepository<UserBill, Long> {
+    fun findByDebitor(debitor: String): List<UserBill>
+}
 
 @Repository
 interface UserBillEntryRepository : CrudRepository<UserBillEntry, Long>

@@ -9,4 +9,19 @@ import javax.persistence.OneToMany
 data class User(@Nonnull @Id var userId: String = "",
                 @Nonnull var username: String = "",
                 @Nonnull var email: String = "",
-                @OneToMany var creditedMeters: List<Meter> = arrayListOf())
+                @OneToMany var creditedMeters: List<Meter> = arrayListOf()) {
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is User) return false
+
+        if (userId != other.userId) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return userId.hashCode()
+    }
+}
+

@@ -7,7 +7,7 @@ import org.mapstruct.Mapping
 import org.mapstruct.Mappings
 
 
-@Mapper(uses = [MeterReadingMapper::class,  EntityReferenceResolver::class], componentModel = "jsr330")
+@Mapper(uses = [MeterReadingMapper::class, EntityReferenceResolver::class], componentModel = "jsr330")
 interface MeterMapper {
 
     @Mappings(
@@ -22,21 +22,4 @@ interface MeterMapper {
             Mapping(target = "creditor", source = "creditorUserId")
     )
     fun toEntity(meterDto: MeterDto): Meter
-
-    //
-//    override fun fromDto(dto: MeterDto): Meter {
-//        if (!debitorGroupRepository.existsById(dto.debitorGroupId)) {
-//            throw ValidationException("No DebitorGroup with id: ${dto.debitorGroupId} exists")
-//        }
-//        val debitorGroup = debitorGroupRepository.findById(dto.debitorGroupId).get()
-//        val meterReadings = meterReadingRepository.findByMeterId(dto.id)
-//        val user = userRepository.findById(dto.creditorUserid).get()
-//        return Meter(dto.name, debitorGroup, meterReadings, user)
-//    }
-//
-//    override fun toDto(entity: Meter): MeterDto {
-//        return MeterDto(entity.id, entity.name, entity.debitorGroup.id,
-//                entity.readings.map { meterReadingMapper.toDto(it) },
-//                entity.creditor.userId, entity.creditor.username)
-//    }
 }

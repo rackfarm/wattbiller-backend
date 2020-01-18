@@ -1,26 +1,44 @@
 package farm.rack.wattbiller.service.impl
 
+import farm.rack.wattbiller.exception.EntityNotFoundException
+import farm.rack.wattbiller.jpa.MeterReadingRepository
 import farm.rack.wattbiller.model.dto.MeterReadingDto
 import farm.rack.wattbiller.service.MeterReadingService
+import farm.rack.wattbiller.service.mapper.MeterReadingMapper
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class DefaultMeterReadingService : MeterReadingService {
+@Singleton
+class DefaultMeterReadingService @Inject constructor(meterReadingMapper: MeterReadingMapper, meterReadingRepository: MeterReadingRepository) : MeterReadingService {
+
+    private val mapper: MeterReadingMapper = meterReadingMapper
+    private val repository: MeterReadingRepository = meterReadingRepository
+
+    private fun save(dto: MeterReadingDto): MeterReadingDto {
+        var entity = mapper.toEntity(dto)
+        entity = repository.save(entity)
+        return mapper.toDto(entity)
+    }
+
     override fun create(dto: MeterReadingDto): MeterReadingDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return save(dto)
     }
 
     override fun readById(id: Long): MeterReadingDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val entity = repository.findById(id).orElseThrow { EntityNotFoundException("Entity with id: $id does not exist") }
+        return mapper.toDto(entity)
     }
 
     override fun readAll(): List<MeterReadingDto> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return repository.findAll().map { mapper.toDto(it) }
     }
 
     override fun update(dto: MeterReadingDto): MeterReadingDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return save(dto)
     }
 
     override fun delete(id: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        repository.deleteById(id)
     }
+
 }

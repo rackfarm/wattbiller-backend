@@ -1,5 +1,6 @@
 package farm.rack.wattbiller.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.time.LocalDate
 import javax.persistence.Entity
 import javax.persistence.OneToMany
@@ -9,4 +10,4 @@ import javax.persistence.OneToMany
 data class BillingPeriod(var name: String = "",
                          var startDate: LocalDate = LocalDate.now(),
                          var endDate: LocalDate = LocalDate.now(),
-                         @OneToMany var meterReadings: List<MeterReading> = arrayListOf()) : AbstractEntity()
+                         @JsonIgnore @OneToMany private var meterReadings: List<MeterReading> = arrayListOf()) : AbstractEntity()

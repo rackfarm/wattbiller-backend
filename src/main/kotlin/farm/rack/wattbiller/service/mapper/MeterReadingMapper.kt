@@ -11,6 +11,7 @@ interface MeterReadingMapper {
 
     @Mapping(target = "meterId", source = "meter.id")
     fun toDto(meterReading: MeterReading): MeterReadingDto
+
     @Mappings(
             Mapping(target = "meter", source = "meterId"),
             Mapping(target = "billedInPeriod", ignore = true)

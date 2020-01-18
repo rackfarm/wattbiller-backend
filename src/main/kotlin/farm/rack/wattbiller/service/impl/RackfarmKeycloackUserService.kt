@@ -37,4 +37,8 @@ class RackfarmKeycloackUserService(
         val user = User(userId, username, email)
         return Optional.of(userRepository.save(user))
     }
+
+    override fun getLoggedInUserOrThrow(): User {
+        return getUser().orElseThrow { RuntimeException("User not logged in") }
+    }
 }
