@@ -10,8 +10,8 @@ data class DebitorGroup(val name: String = "",
 ) : AbstractEntity() {
 
     fun getMemberMap(): Map<User, Double> {
-        val map = hashMapOf<User,Double>()
-        members.forEach{map.put(it.user, it.percentage)}
+        val map = hashMapOf<User, Double>()
+        members.forEach { map.put(it.user, it.percentage) }
         return map
 
     }

@@ -5,9 +5,8 @@ import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 
 @Entity
-data class Meter(val name: String = "",
-                 @ManyToOne val debitorGroup: DebitorGroup = DebitorGroup(),
-                 @OneToMany(mappedBy = "meter") val meterReadings: List<MeterReading> = arrayListOf(),
-                 @ManyToOne val creditor: User = User()
-): AbstractEntity() {
-}
+data class Meter(var name: String = "",
+                 @ManyToOne var debitorGroup: DebitorGroup = DebitorGroup(),
+                 @OneToMany(mappedBy = "meter") var meterReadings: List<MeterReading> = arrayListOf(),
+                 @ManyToOne var creditor: User = User()
+) : AbstractEntity()

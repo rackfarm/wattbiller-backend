@@ -1,6 +1,5 @@
 package farm.rack.wattbiller.service
 
-import farm.rack.wattbiller.model.dto.UserBillDto
+import farm.rack.wattbiller.model.UserBill
 
-interface UserBillService: CrudService<UserBillDto> {
-}
+interface UserBillService : ReadOnlyService<UserBill >

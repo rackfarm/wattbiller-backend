@@ -4,7 +4,6 @@ import javax.persistence.Entity
 import javax.persistence.ManyToOne
 
 @Entity
-data class DebitorGroupMembership(@ManyToOne val user: User = User(),
-                                  @ManyToOne val debitorGroup: DebitorGroup = DebitorGroup(),
-                                  val percentage: Double = 0.0): AbstractEntity(){
-}
+data class DebitorGroupMembership(@ManyToOne var user: User = User(),
+                                  @ManyToOne var debitorGroup: DebitorGroup = DebitorGroup(),
+                                  var percentage: Double = 0.0) : AbstractEntity()

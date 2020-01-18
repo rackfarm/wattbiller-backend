@@ -1,19 +1,39 @@
 package farm.rack.wattbiller.jpa
 
 import farm.rack.wattbiller.model.*
-import farm.rack.wattbiller.model.Meter
-import farm.rack.wattbiller.model.MeterReading
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.repository.CrudRepository
 
-@Repository interface UserRepository: CrudRepository<User, String>
-@Repository interface MeterRepository: CrudRepository<Meter, Long>
-@Repository interface MeterReadingRepository: CrudRepository<MeterReading, Long> {
+@Repository
+interface UserRepository : CrudRepository<User, String> {
+    fun findByUsername(username: String): User
+}
+
+@Repository
+interface MeterRepository : CrudRepository<Meter, Long> {
+    fun findByDebitorGroupId(debitorGroupId: Long): List<Meter>
+}
+
+@Repository
+interface MeterReadingRepository : CrudRepository<MeterReading, Long> {
     fun findByMeterId(meterId: Long): List<MeterReading>
 }
-@Repository interface BillRepository: CrudRepository<PeriodicStatement, Long>
-@Repository interface BillingPeriodRepository: CrudRepository<BillingPeriod,Long>
-@Repository interface DebitorGroupRepository: CrudRepository<DebitorGroup, Long>
-@Repository interface DebitorGroupMembershipRepository: CrudRepository<DebitorGroupMembership, Long>
-@Repository interface UserBillRepository: CrudRepository<UserBill, Long>
+
+@Repository
+interface BillingPeriodRepository : CrudRepository<BillingPeriod, Long>
+
+@Repository
+interface DebitorGroupRepository : CrudRepository<DebitorGroup, Long>
+
+@Repository
+interface DebitorGroupMembershipRepository : CrudRepository<DebitorGroupMembership, Long>
+
+@Repository
+interface UserBillRepository : CrudRepository<UserBill, Long>
+
+@Repository
+interface UserBillEntryRepository : CrudRepository<UserBillEntry, Long>
+
+@Repository
+interface MeterCostRepository : CrudRepository<MeterCost, Long>
 

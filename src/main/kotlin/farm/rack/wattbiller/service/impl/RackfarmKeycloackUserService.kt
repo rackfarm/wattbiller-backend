@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Transactional
-class RackfarmKeycloackUserService (
+class RackfarmKeycloackUserService(
         val securityService: SecurityService,
         val userRepository: UserRepository
 ) : UserService {
