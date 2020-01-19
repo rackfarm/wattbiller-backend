@@ -5,7 +5,9 @@ import farm.rack.wattbiller.jpa.MeterRepository
 import farm.rack.wattbiller.model.dto.MeterDto
 import farm.rack.wattbiller.service.MeterService
 import farm.rack.wattbiller.service.mapper.MeterMapper
+import javax.inject.Singleton
 
+@Singleton
 class DefaultMeterService(private val repository: MeterRepository, private val mapper: MeterMapper) : MeterService {
 
     private fun save(dto: MeterDto): MeterDto {

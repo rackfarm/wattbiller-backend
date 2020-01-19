@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 @Controller("/api/meterReading")
 class MeterReadingController {
+
     @Inject
     lateinit var meterReadingService: MeterReadingService
 

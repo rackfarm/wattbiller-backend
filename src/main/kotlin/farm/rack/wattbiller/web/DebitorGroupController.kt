@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 @Controller("/api/debitorGroup")
 class DebitorGroupController {
+
     @Inject
     lateinit var debitorGroupService: DebitorGroupService
 

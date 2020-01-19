@@ -3,6 +3,7 @@ package farm.rack.wattbiller.service.impl
 import farm.rack.wattbiller.jpa.UserRepository
 import farm.rack.wattbiller.model.User
 import farm.rack.wattbiller.service.UserService
+import io.micronaut.context.annotation.Requires
 import io.micronaut.security.utils.SecurityService
 import io.micronaut.spring.tx.annotation.Transactional
 import java.util.Optional
@@ -10,6 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Transactional
+@Requires(classes = [SecurityService::class])
 class RackfarmKeycloackUserService(
         val securityService: SecurityService,
         val userRepository: UserRepository
