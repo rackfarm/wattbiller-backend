@@ -5,12 +5,12 @@ import farm.rack.wattbiller.model.User
 import farm.rack.wattbiller.service.UserService
 import io.micronaut.context.annotation.Requires
 import io.micronaut.security.utils.SecurityService
-import io.micronaut.spring.tx.annotation.Transactional
+import io.micronaut.transaction.annotation.TransactionalAdvice
 import java.util.Optional
 import javax.inject.Singleton
 
 @Singleton
-@Transactional
+@TransactionalAdvice
 @Requires(classes = [SecurityService::class])
 class RackfarmKeycloackUserService(
         val securityService: SecurityService,

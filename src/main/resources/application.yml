@@ -3,24 +3,20 @@ micronaut:
     name: wattbiller-backend
   security:
     enabled: true
-    oauth2:
-      enabled: false
-      clients:
-        google:
-          client-id: 'wattbiller'
-          client-secret: '3ef06c56-4ae9-4724-9347-87f4f1c8f84e'
-          openid:
-            issuer: 'https://login.rack.farm/'
     token:
       jwt:
         enabled: true
-        cookie:
+        bearer:
           enabled: true
         signatures:
-          secret:
-            generator:
-              secret: 586f86594888f7bc1b273e12c0ab478f
+          jwks:
+            rackfarmLogin:
+              url: 'https://login.rack.farm/auth/realms/rackfarm/protocol/openid-connect/certs'
     endpoints:
+      login:
+        enabled: true
+        oauth:
+          enabled: true
       logout:
         enabled: true
         get-allowed: true
@@ -40,3 +36,7 @@ jpa:
         hbm2ddl:
           auto: update
         show_sql: true
+billing:
+  period:
+    timeunit: MONTH
+    amount: 1
