@@ -4,9 +4,9 @@ import javax.persistence.Entity
 import javax.persistence.OneToMany
 
 @Entity
-data class DebitorGroup(val name: String = "",
-                        @OneToMany(mappedBy = "debitorGroup") val members: List<DebitorGroupMembership> = arrayListOf(),
-                        @OneToMany(mappedBy = "debitorGroup") val meters: List<Meter> = arrayListOf()
+data class DebitorGroup(var name: String = "",
+                        @OneToMany(mappedBy = "debitorGroup") var members: List<DebitorGroupMembership> = arrayListOf(),
+                        @OneToMany(mappedBy = "debitorGroup") var meters: List<Meter> = arrayListOf()
 ) : AbstractEntity() {
 
     fun getMemberMap(): Map<User, Double> {

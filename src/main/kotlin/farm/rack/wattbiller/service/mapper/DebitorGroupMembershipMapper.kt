@@ -19,4 +19,8 @@ interface DebitorGroupMembershipMapper {
             Mapping(target = "user", source = "username", qualifiedByName = ["findByUsername"])
     )
     fun toEntity(debitorGroupMemberDto: DebitorGroupMemberDto): DebitorGroupMembership
+
+    fun dtosToEntities(list: List<DebitorGroupMembership>): List<DebitorGroupMemberDto>
+
+    fun entitesToDtos(list: List<DebitorGroupMemberDto>): List<DebitorGroupMembership>
 }

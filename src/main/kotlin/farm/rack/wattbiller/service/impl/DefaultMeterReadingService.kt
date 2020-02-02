@@ -7,8 +7,10 @@ import farm.rack.wattbiller.service.MeterReadingService
 import farm.rack.wattbiller.service.mapper.MeterReadingMapper
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.transaction.Transactional
 
 @Singleton
+@Transactional
 class DefaultMeterReadingService @Inject constructor(meterReadingMapper: MeterReadingMapper, meterReadingRepository: MeterReadingRepository) : MeterReadingService {
 
     private val mapper: MeterReadingMapper = meterReadingMapper

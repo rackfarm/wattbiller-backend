@@ -3,9 +3,12 @@ package farm.rack.wattbiller.web
 import farm.rack.wattbiller.model.dto.DebitorGroupDto
 import farm.rack.wattbiller.service.DebitorGroupService
 import io.micronaut.http.annotation.*
+import io.micronaut.security.annotation.Secured
+import io.micronaut.security.rules.SecurityRule
 import javax.inject.Inject
 
 @Controller("/api/debitorGroup")
+@Secured(SecurityRule.IS_AUTHENTICATED)
 class DebitorGroupController {
 
     @Inject

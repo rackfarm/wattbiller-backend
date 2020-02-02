@@ -24,7 +24,7 @@ dependencies {
     runtimeOnly 'io.micronaut.configuration:micronaut-jdbc-hikari'
     runtimeOnly 'com.h2database:h2'
     kapt 'io.micronaut.data:micronaut-data-processor:1.0.0.M5'
-    compile 'io.micronaut.data:micronaut-data-hibernate-jpa:1.0.0.M5'
+    implementation 'io.micronaut.data:micronaut-data-hibernate-jpa:1.0.0.M5'
     kapt "javax.persistence:javax.persistence-api:2.2"
     kapt "io.micronaut:micronaut-security"
     implementation "io.micronaut:micronaut-security"
@@ -63,6 +63,9 @@ test {
 
 allOpen {
     annotation("io.micronaut.aop.Around")
+    annotation("javax.inject.Singleton")
+    annotation("io.micronaut.http.annotation.Controller")
+    annotation("javax.transaction.Transactional")
 }
 
 compileKotlin {

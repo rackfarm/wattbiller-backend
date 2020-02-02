@@ -40,3 +40,8 @@ billing:
   period:
     timeunit: MONTH
     amount: 1
+
+jackson:
+  serialization-inclusion: NON_ABSENT
+  serialization:
+    writeDatesAsTimestamps: false

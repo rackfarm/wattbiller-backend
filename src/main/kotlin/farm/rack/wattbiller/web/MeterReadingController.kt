@@ -3,9 +3,12 @@ package farm.rack.wattbiller.web
 import farm.rack.wattbiller.model.dto.MeterReadingDto
 import farm.rack.wattbiller.service.MeterReadingService
 import io.micronaut.http.annotation.*
+import io.micronaut.security.annotation.Secured
+import io.micronaut.security.rules.SecurityRule
 import javax.inject.Inject
 
 @Controller("/api/meterReading")
+@Secured(SecurityRule.IS_AUTHENTICATED)
 class MeterReadingController {
 
     @Inject

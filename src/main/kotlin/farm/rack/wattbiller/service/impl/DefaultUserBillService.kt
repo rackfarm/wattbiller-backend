@@ -6,8 +6,10 @@ import farm.rack.wattbiller.service.UserBillService
 import javax.inject.Inject
 import javax.inject.Singleton
 import javax.persistence.EntityNotFoundException
+import javax.transaction.Transactional
 
 @Singleton
+@Transactional
 class DefaultUserBillService @Inject constructor(private val userBillRepository: UserBillRepository,
                                                  private val keycloackUserService: RackfarmKeycloackUserService)
     : UserBillService {

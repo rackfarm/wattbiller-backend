@@ -6,8 +6,10 @@ import farm.rack.wattbiller.model.dto.DebitorGroupDto
 import farm.rack.wattbiller.service.DebitorGroupService
 import farm.rack.wattbiller.service.mapper.DebitorGroupMapper
 import javax.inject.Singleton
+import javax.transaction.Transactional
 
 @Singleton
+@Transactional
 class DefaultDebitorGroupService(private val repository: DebitorGroupRepository, private val mapper: DebitorGroupMapper) : DebitorGroupService {
 
     private fun save(dto: DebitorGroupDto): DebitorGroupDto {
