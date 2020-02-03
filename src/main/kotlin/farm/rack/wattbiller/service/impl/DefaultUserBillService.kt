@@ -1,7 +1,7 @@
 package farm.rack.wattbiller.service.impl
 
-import farm.rack.wattbiller.jpa.UserBillRepository
 import farm.rack.wattbiller.model.UserBill
+import farm.rack.wattbiller.model.UserBillRepository
 import farm.rack.wattbiller.service.UserBillService
 import javax.inject.Inject
 import javax.inject.Singleton

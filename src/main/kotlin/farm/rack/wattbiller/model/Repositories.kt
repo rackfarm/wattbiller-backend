@@ -1,6 +1,5 @@
-package farm.rack.wattbiller.jpa
+package farm.rack.wattbiller.model
 
-import farm.rack.wattbiller.model.*
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.repository.CrudRepository
 

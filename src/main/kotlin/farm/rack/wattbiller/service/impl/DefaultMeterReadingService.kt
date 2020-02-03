@@ -1,7 +1,7 @@
 package farm.rack.wattbiller.service.impl
 
 import farm.rack.wattbiller.exception.EntityNotFoundException
-import farm.rack.wattbiller.jpa.MeterReadingRepository
+import farm.rack.wattbiller.model.MeterReadingRepository
 import farm.rack.wattbiller.model.dto.MeterReadingDto
 import farm.rack.wattbiller.service.MeterReadingService
 import farm.rack.wattbiller.service.mapper.MeterReadingMapper

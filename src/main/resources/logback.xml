@@ -10,8 +10,8 @@
         </encoder>
     </appender>
 
-    <root level="trace">
+    <root level="WARNING">
         <appender-ref ref="STDOUT"/>
     </root>
-    <logger name="io.micronaut.context.condition" level="TRACE"/>
+    <logger name="io.micronaut.context.condition" level="WARNING"/>
 </configuration>

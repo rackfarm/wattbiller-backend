@@ -50,6 +50,7 @@ dependencies {
     testImplementation "io.micronaut.test:micronaut-test-kotlintest"
     testImplementation "io.mockk:mockk:1.9.3"
     testImplementation "io.kotlintest:kotlintest-runner-junit5:3.3.2"
+    implementation "org.keycloak:keycloak-admin-client:8.0.1"
 }
 
 test.classpath += configurations.developmentOnly

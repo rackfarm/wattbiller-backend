@@ -1,10 +1,6 @@
 package farm.rack.wattbiller.service.mapper
 
-import farm.rack.wattbiller.jpa.MeterRepository
-import farm.rack.wattbiller.jpa.UserRepository
-import farm.rack.wattbiller.model.AbstractEntity
-import farm.rack.wattbiller.model.Meter
-import farm.rack.wattbiller.model.User
+import farm.rack.wattbiller.model.*
 import org.mapstruct.TargetType
 import javax.inject.Inject
 import javax.inject.Singleton

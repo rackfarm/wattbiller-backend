@@ -20,7 +20,7 @@ interface DebitorGroupMembershipMapper {
     )
     fun toEntity(debitorGroupMemberDto: DebitorGroupMemberDto): DebitorGroupMembership
 
-    fun dtosToEntities(list: List<DebitorGroupMembership>): List<DebitorGroupMemberDto>
+    fun entitiesToDtos(list: List<DebitorGroupMembership>): List<DebitorGroupMemberDto>
 
-    fun entitesToDtos(list: List<DebitorGroupMemberDto>): List<DebitorGroupMembership>
+    fun dtosToEntities(list: List<DebitorGroupMemberDto>): List<DebitorGroupMembership>
 }

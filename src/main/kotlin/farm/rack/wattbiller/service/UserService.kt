@@ -8,4 +8,8 @@ interface UserService {
     fun getLoggedInUserOrThrow(): User
 
     fun getUser(): Optional<User>
+
+    fun findByUsername(username: String): Optional<User>
+
+    fun readAllUsers(): List<User>
 }
