@@ -10,4 +10,5 @@ import javax.persistence.OneToMany
 data class BillingPeriod(var name: String = "",
                          var startDate: LocalDate = LocalDate.now(),
                          var endDate: LocalDate = LocalDate.now(),
+                         var billed: Boolean = false,
                          @JsonIgnore @OneToMany private var meterReadings: List<MeterReading> = arrayListOf()) : AbstractEntity()

@@ -1,7 +1,7 @@
 package farm.rack.wattbiller.web
 
 import farm.rack.wattbiller.model.UserBill
-import farm.rack.wattbiller.service.UserBillService
+import farm.rack.wattbiller.service.crud.UserBillService
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable

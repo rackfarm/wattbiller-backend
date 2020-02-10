@@ -2,6 +2,9 @@ package farm.rack.wattbiller.model
 
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.repository.CrudRepository
+import java.time.LocalDate
+import java.time.ZonedDateTime
+import java.util.Optional
 
 @Repository
 interface UserRepository : CrudRepository<User, String> {
@@ -16,10 +19,14 @@ interface MeterRepository : CrudRepository<Meter, Long> {
 @Repository
 interface MeterReadingRepository : CrudRepository<MeterReading, Long> {
     fun findByMeterId(meterId: Long): List<MeterReading>
+    fun findByBilledWithinPeriodIsNullAndMeasuredAtBetween(date1: ZonedDateTime, date2: ZonedDateTime): List<MeterReading>
 }
 
 @Repository
-interface BillingPeriodRepository : CrudRepository<BillingPeriod, Long>
+interface BillingPeriodRepository : CrudRepository<BillingPeriod, Long> {
+    fun findByBilledFalseAndEndDateBefore(endDate: LocalDate): List<BillingPeriod>
+    fun findTopOrderByEndDateDesc(): Optional<BillingPeriod>
+}
 
 @Repository
 interface DebitorGroupRepository : CrudRepository<DebitorGroup, Long>

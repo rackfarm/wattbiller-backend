@@ -1,4 +1,4 @@
-package farm.rack.wattbiller.service
+package farm.rack.wattbiller.service.crud
 
 interface ReadOnlyService<Dto> {
 

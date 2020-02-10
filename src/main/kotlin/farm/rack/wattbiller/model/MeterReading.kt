@@ -8,5 +8,5 @@ import javax.persistence.ManyToOne
 data class MeterReading(@ManyToOne var meter: Meter = Meter(),
                         var measuredAt: ZonedDateTime = ZonedDateTime.now(),
                         var value: Double = 0.0,
-                        @ManyToOne(optional = true) var billedInPeriod: BillingPeriod? = null
+                        @ManyToOne(optional = true) var billedWithinPeriod: BillingPeriod? = null
 ) : AbstractEntity()

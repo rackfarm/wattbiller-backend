@@ -1,9 +1,9 @@
-package farm.rack.wattbiller.service.impl
+package farm.rack.wattbiller.service.crud.impl
 
 import farm.rack.wattbiller.exception.EntityNotFoundException
 import farm.rack.wattbiller.model.MeterReadingRepository
 import farm.rack.wattbiller.model.dto.MeterReadingDto
-import farm.rack.wattbiller.service.MeterReadingService
+import farm.rack.wattbiller.service.crud.MeterReadingService
 import farm.rack.wattbiller.service.mapper.MeterReadingMapper
 import javax.inject.Inject
 import javax.inject.Singleton

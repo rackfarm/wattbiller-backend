@@ -1,10 +1,10 @@
-package farm.rack.wattbiller.service.impl
+package farm.rack.wattbiller.service.crud.impl
 
 import farm.rack.wattbiller.exception.EntityNotFoundException
 import farm.rack.wattbiller.model.DebitorGroupMembershipRepository
 import farm.rack.wattbiller.model.DebitorGroupRepository
 import farm.rack.wattbiller.model.dto.DebitorGroupDto
-import farm.rack.wattbiller.service.DebitorGroupService
+import farm.rack.wattbiller.service.crud.DebitorGroupService
 import farm.rack.wattbiller.service.mapper.DebitorGroupMapper
 import farm.rack.wattbiller.service.mapper.DebitorGroupMembershipMapper
 import javax.inject.Singleton
@@ -29,7 +29,7 @@ class DefaultDebitorGroupService(private val repository: DebitorGroupRepository,
         val entity = save(dto)
         createdGroupMembers.forEach { it.debitorGroupId = entity.id }
         dto.members = createdGroupMembers
-        var entities = membershipMapper.dtosToEntities(createdGroupMembers)
+        val entities = membershipMapper.dtosToEntities(createdGroupMembers)
         entities.forEach { membershipRepository.save(it) }
         return mapper.toDto(repository.findById(entity.id).get())
     }

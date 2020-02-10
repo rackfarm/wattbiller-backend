@@ -8,5 +8,6 @@ import javax.persistence.OneToMany
 data class Meter(var name: String = "",
                  @ManyToOne var debitorGroup: DebitorGroup = DebitorGroup(),
                  @OneToMany(mappedBy = "meter") var meterReadings: List<MeterReading> = arrayListOf(),
+                 var costFactor: Double = 1.0,
                  @ManyToOne var creditor: User = User()
 ) : AbstractEntity()

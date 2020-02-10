@@ -1,8 +1,8 @@
-package farm.rack.wattbiller.service.impl
+package farm.rack.wattbiller.service.crud.impl
 
 import farm.rack.wattbiller.model.UserBill
 import farm.rack.wattbiller.model.UserBillRepository
-import farm.rack.wattbiller.service.UserBillService
+import farm.rack.wattbiller.service.crud.UserBillService
 import javax.inject.Inject
 import javax.inject.Singleton
 import javax.persistence.EntityNotFoundException

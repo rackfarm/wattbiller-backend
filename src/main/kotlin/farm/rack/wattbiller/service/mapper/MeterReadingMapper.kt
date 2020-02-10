@@ -14,7 +14,7 @@ interface MeterReadingMapper {
 
     @Mappings(
             Mapping(target = "meter", source = "meterId"),
-            Mapping(target = "billedInPeriod", ignore = true)
+            Mapping(target = "billedWithinPeriod", ignore = true)
     )
     fun toEntity(meterReadingDto: MeterReadingDto): MeterReading
 //

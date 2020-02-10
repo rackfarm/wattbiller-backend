@@ -1,14 +1,15 @@
-package farm.rack.wattbiller.service.impl
+package farm.rack.wattbiller.service.crud.impl
 
 import farm.rack.wattbiller.config.KeycloakConfiguration
 import farm.rack.wattbiller.model.User
 import farm.rack.wattbiller.model.UserRepository
-import farm.rack.wattbiller.service.UserService
+import farm.rack.wattbiller.service.crud.UserService
 import io.micronaut.context.annotation.Requires
 import io.micronaut.context.annotation.Value
 import io.micronaut.runtime.event.annotation.EventListener
 import io.micronaut.runtime.server.event.ServerStartupEvent
 import io.micronaut.security.utils.SecurityService
+import org.keycloak.admin.client.Keycloak
 import java.util.Optional
 import javax.inject.Singleton
 import javax.transaction.Transactional
@@ -19,7 +20,8 @@ import javax.transaction.Transactional
 class RackfarmKeycloackUserService(
         val securityService: SecurityService,
         val userRepository: UserRepository,
-        val keycloakConfiguration: KeycloakConfiguration
+        val keycloakConfiguration: KeycloakConfiguration,
+        val keycloakAdminClient: Keycloak
 ) : UserService {
 
     private val USERID_ATTRIBUTE = "sub"
@@ -63,14 +65,14 @@ class RackfarmKeycloackUserService(
     }
 
     override fun readAllUsers(): List<User> {
-        val realmResource = keycloakConfiguration.buildKeycloakAdminClient()!!.realm(keycloakConfiguration.realm)
+        val realmResource = keycloakAdminClient.realm(keycloakConfiguration.realm)
         val clientUuid = realmResource.clients().findByClientId(clientId).first().id
         val keycloakUsers = realmResource.users().list()
-        val users = keycloakUsers
+        val wattBillerUsers = keycloakUsers
                 .filter { realmResource.users().get(it.id).roles().clientLevel(clientUuid).listEffective().size > 0 }
                 .map { User(it.id, it.username, it.email) }
                 .toList()
-        userRepository.saveAll(users)
-        return users
+        userRepository.saveAll(wattBillerUsers)
+        return wattBillerUsers
     }
 }

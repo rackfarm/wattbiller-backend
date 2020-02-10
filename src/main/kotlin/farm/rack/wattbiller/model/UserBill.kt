@@ -6,7 +6,7 @@ import javax.persistence.*
 data class UserBill(@Id val id: Long = 0,
                     @ManyToOne val billingPeriod: BillingPeriod = BillingPeriod(),
                     val debitor: String = "",
-                    @OneToMany val entries: List<UserBillEntry> = arrayListOf(),
+                    @OneToMany var entries: List<UserBillEntry> = arrayListOf(),
                     val amount: Double = 0.0)
 
 @Entity
@@ -17,7 +17,7 @@ data class MeterCost(@Id val id: Long = 0,
 @Entity
 data class UserBillEntry(@Id val id: Long = 0,
                          val creditor: String = "",
-                         val creditorId: Long = 0L,
+                         val creditorId: String = "",
                          val totalAmount: Double = 0.0,
                          val userBillId: Long = 0,
                          var paymentStatus: PaymentStatus = PaymentStatus.OPEN,

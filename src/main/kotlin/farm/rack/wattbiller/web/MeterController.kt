@@ -1,7 +1,7 @@
 package farm.rack.wattbiller.web
 
 import farm.rack.wattbiller.model.dto.MeterDto
-import farm.rack.wattbiller.service.MeterService
+import farm.rack.wattbiller.service.crud.MeterService
 import io.micronaut.http.annotation.*
 import io.micronaut.security.annotation.Secured
 import io.micronaut.security.rules.SecurityRule
