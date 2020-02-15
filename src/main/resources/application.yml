@@ -52,5 +52,5 @@ keycloak:
     realm: rackfarm
     clientId: admin-cli
     username: rackfarm-realm-reader
-    password: jTx2ECix732Zvh7Vw&sPn
+    password: ${WATTBILLER_KEYCLOAK_ADMIN_PASSWORD}
   clientId: wattbiller
