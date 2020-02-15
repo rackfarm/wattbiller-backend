@@ -13,7 +13,6 @@ class KeycloakClientFactory(val keycloakConfiguration: KeycloakConfiguration) {
 
     @Prototype
     fun buildKeycloakAdminClient(): Keycloak {
-        println("PW: " + keycloakConfiguration.password)
         return KeycloakBuilder.builder()
                 .serverUrl(keycloakConfiguration.serverUrl)
                 .realm(keycloakConfiguration.realm)
