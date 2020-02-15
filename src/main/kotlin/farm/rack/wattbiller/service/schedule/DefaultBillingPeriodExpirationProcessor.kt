@@ -14,6 +14,7 @@ class DefaultBillingPeriodExpirationProcessor @Inject constructor(val billingPer
                                                                   val meterCostRepository: MeterCostRepository,
                                                                   val userBillEntryRepository: UserBillEntryRepository,
                                                                   val userBillRepository: UserBillRepository,
+                                                                  val meterRepository: MeterRepository,
                                                                   val userService: UserService)
     : BillingPeriodExpirationProcessor {
     override fun billExpiredPeriods() {
@@ -44,15 +45,41 @@ class DefaultBillingPeriodExpirationProcessor @Inject constructor(val billingPer
     fun billPeriod(periodToBill: BillingPeriod): List<UserBill> {
         val startTime = ZonedDateTime.of(periodToBill.startDate, LocalTime.MIDNIGHT, ZoneId.systemDefault())
         val endTime = ZonedDateTime.of(periodToBill.endDate.plusDays(1), LocalTime.MIDNIGHT, ZoneId.systemDefault())
-        val meterCosts = meterReadingRepository.findByBilledWithinPeriodIsNullAndMeasuredAtBetween(startTime, endTime)
-                .groupBy { it.meter }
-                .mapValues {
-                    it.value.sumByDouble { meterReading -> meterReading.value * it.key.costFactor }
-                }
-        return userService.readAllUsers().map { user -> generateUserBillForUser(user, meterCosts, periodToBill) }
+        val readingsInPeriod = meterReadingRepository.findByBilledWithinPeriodIsNullAndMeasuredAtBetween(startTime, endTime)
+        val meterCosts = calculateMeterCostsForReadings(readingsInPeriod)
+        val userBills = userService.readAllUsers().map { user -> generateUserBillForUser(user, meterCosts, periodToBill) }
+        readingsInPeriod.forEach {
+            it.billedWithinPeriod = periodToBill
+            meterReadingRepository.save(it)
+        }
+        return userBills
     }
 
-    fun generateUserBillForUser(user: User, costMap: Map<Meter, Double>, billingPeriod: BillingPeriod): UserBill {
+    private fun calculateMeterCostsForReadings(readingsInPeriod: List<MeterReading>): Map<Meter, Double> {
+        return readingsInPeriod
+                .groupBy { it.meter }
+                .mapValues {
+                    when (it.key.readingType) {
+                        ReadingType.CUMULATIVE   -> it.value.sumByDouble { meterReading -> meterReading.value * it.key.costFactor }
+                        ReadingType.ABSOLUTE_MAX -> {
+                            it.value.maxBy { reading -> reading.value }?.value ?: 0.0 * it.key.costFactor
+                        }
+                        ReadingType.ABSOLUTE_NEW -> {
+                            it.value.maxBy { reading -> reading.measuredAt }?.value ?: 0.0 * it.key.costFactor
+                        }
+                        ReadingType.RELATIVE_MAX -> {
+                            val maxValue = it.value.maxBy { reading -> reading.value }?.value ?: 0.0
+                            var relativeValue = maxValue - it.key.lastBilledValue
+                            if (relativeValue.compareTo(0) <= 0) relativeValue = 0.0
+                            it.key.lastBilledValue = maxValue
+                            meterRepository.save(it.key)
+                            relativeValue * it.key.costFactor
+                        }
+                    }
+                }
+    }
+
+    private fun generateUserBillForUser(user: User, costMap: Map<Meter, Double>, billingPeriod: BillingPeriod): UserBill {
         val userBill = userBillRepository.save(UserBill(0L, billingPeriod, user.username, arrayListOf()))
         val entryList = arrayListOf<UserBillEntry>()
         val metersByCreditor = costMap.keys.filter { meter -> meter.debitorGroup.getMemberMap().containsKey(user) }.groupBy { it.creditor }
