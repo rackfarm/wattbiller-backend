@@ -60,8 +60,8 @@ class RackfarmKeycloackUserService(
 
     @EventListener
     fun startUp(event: ServerStartupEvent) {
-        println("Wattbiller Users:")
-        readAllUsers().forEach { println(it.username) }
+        val users = "Wattbiller Users: ${readAllUsers().joinToString { it.username }}"
+        println(users)
     }
 
     override fun readAllUsers(): List<User> {
