@@ -15,6 +15,7 @@ class DebitorGroupController {
     lateinit var debitorGroupService: DebitorGroupService
 
     @Post
+    @Secured("wattbiller-admin")
     fun createDebitorGroup(@Body debitorGroup: DebitorGroupDto): DebitorGroupDto {
         return debitorGroupService.create(debitorGroup)
     }
@@ -30,6 +31,7 @@ class DebitorGroupController {
     }
 
     @Delete("/{id}")
+    @Secured("wattbiller-admin")
     fun deleteById(@PathVariable id: Long) {
         debitorGroupService.delete(id)
     }

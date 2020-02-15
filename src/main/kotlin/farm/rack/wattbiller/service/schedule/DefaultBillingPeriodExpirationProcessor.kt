@@ -9,14 +9,16 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DefaultBillingPeriodExpirationProcessor @Inject constructor(val billingPeriodRepository: BillingPeriodRepository,
-                                                                  val meterReadingRepository: MeterReadingRepository,
-                                                                  val meterCostRepository: MeterCostRepository,
-                                                                  val userBillEntryRepository: UserBillEntryRepository,
-                                                                  val userBillRepository: UserBillRepository,
-                                                                  val meterRepository: MeterRepository,
-                                                                  val userService: UserService)
+class DefaultBillingPeriodExpirationProcessor @Inject constructor(
+        val billingPeriodRepository: BillingPeriodRepository,
+        val meterReadingRepository: MeterReadingRepository,
+        val meterCostRepository: MeterCostRepository,
+        val userBillEntryRepository: UserBillEntryRepository,
+        val userBillRepository: UserBillRepository,
+        val meterRepository: MeterRepository,
+        val userService: UserService)
     : BillingPeriodExpirationProcessor {
+
     override fun billExpiredPeriods() {
         val expiredPeriods = billingPeriodRepository.findByBilledFalseAndEndDateBefore(LocalDate.now().minusDays(5))
         expiredPeriods.forEach { billPeriod(it) }

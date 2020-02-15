@@ -51,7 +51,7 @@ keycloak:
     serverUrl: https://login.rack.farm/auth
     realm: rackfarm
     clientId: admin-cli
-    clientSecret: 24eadbfa-f31a-4324-8d2b-6c8f2694623e
+    clientSecret: ${wattbiller.keycloak.admin.clientSecret}
     username: rackfarm-realm-reader
     password: jTx2ECix732Zvh7Vw&sPn
   clientId: wattbiller

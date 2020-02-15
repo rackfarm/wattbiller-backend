@@ -17,18 +17,5 @@ interface MeterReadingMapper {
             Mapping(target = "billedWithinPeriod", ignore = true)
     )
     fun toEntity(meterReadingDto: MeterReadingDto): MeterReading
-//
-//    @Inject
-//    lateinit var meterRepository: MeterRepository
-//
-//    override fun fromDto(dto: MeterReadingDto): MeterReading {
-//        val meter = meterRepository.findById(dto.meterId).get()
-//        val meterReading = MeterReading(meter, dto.measuredAt, dto.value)
-//        meterReading.id = dto.id
-//        return meterReading
-//    }
-//
-//    override fun toDto(entity: MeterReading): MeterReadingDto {
-//        return MeterReadingDto(entity.id, entity.timeWhenMeasured, entity.value, entity.meter.id)
-//    }
+
 }

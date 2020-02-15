@@ -15,6 +15,7 @@ class MeterController {
     lateinit var meterService: MeterService
 
     @Post
+    @Secured("wattbiller-admin")
     fun createMeter(@Body meter: MeterDto): MeterDto {
         return meterService.create(meter)
     }
@@ -30,6 +31,7 @@ class MeterController {
     }
 
     @Delete("/{id}")
+    @Secured("wattbiller-admin")
     fun deleteById(@PathVariable id: Long) {
         meterService.delete(id)
     }
